@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://www.khasang.ru/poker/schemas" xmlns:schemas="http://www.khasang.ru/poker/schemas">
+    <!--<xs:element name="EvaluateHandRequest">-->
+        <!--<xs:complexType>-->
+            <!--<xs:sequence>-->
+                <!--<xs:element maxOccurs="unbounded" ref="schemas:card"/>-->
+            <!--</xs:sequence>-->
+        <!--</xs:complexType>-->
+    <!--</xs:element>-->
+    <xs:element name="EvaluateHandRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="5" maxOccurs="5"
+                            ref="schemas:card"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="card">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="schemas:suit"/>
+                <xs:element ref="schemas:face"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!--<xs:element name="suit" type="xs:NCName"/>-->
+    <!--<xs:element name="face" type="xs:NCName"/>-->
+    <xs:element name="suit" type="schemas:Suit"/>
+    <xs:simpleType name="Suit">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SPADES"/>
+            <xs:enumeration value="CLUBS"/>
+            <xs:enumeration value="HEARTS"/>
+            <xs:enumeration value="DIAMONDS"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="face" type="schemas:Face"/>
+    <xs:simpleType name="Face">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ACE"/>
+            <xs:enumeration value="TWO"/>
+            <xs:enumeration value="THREE"/>
+            <xs:enumeration value="FOUR"/>
+            <xs:enumeration value="FIVE"/>
+            <xs:enumeration value="SIX"/>
+            <xs:enumeration value="SEVEN"/>
+            <xs:enumeration value="EIGHT"/>
+            <xs:enumeration value="NINE"/>
+            <xs:enumeration value="TEN"/>
+            <xs:enumeration value="JACK"/>
+            <xs:enumeration value="QUEEN"/>
+            <xs:enumeration value="KING"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="EvaluateHandResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="schemas:handName"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="handName" type="xs:string"/>
+</xs:schema>

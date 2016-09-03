@@ -1,0 +1,4 @@
+<EvaluateHandResponse
+        xmlns="http://www.khasang.ru/poker/schemas">
+    <handName>Full House</handName>
+</EvaluateHandResponse>

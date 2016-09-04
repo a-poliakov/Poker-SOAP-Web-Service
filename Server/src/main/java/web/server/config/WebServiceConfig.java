@@ -2,6 +2,7 @@ package web.server.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
@@ -30,6 +31,7 @@ import java.util.Properties;
 
 @EnableWs
 @Configuration
+@ComponentScan({"web.server"})
 public class WebServiceConfig extends WsConfigurerAdapter {
     @Autowired
     Environment environment;
@@ -114,30 +116,30 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 
     // TODO: 04.09.2016  Настроить сервлет MessageDispatcherServlet для SOAP так, чтобы одновременно был доступен и DispatcherServlet для Spring MVC
 
-    @Bean
-    public WebServiceMessageReceiverHandlerAdapter webServiceMessageReceiverHandlerAdapter(){
-        return new WebServiceMessageReceiverHandlerAdapter();
-    }
-
-    @Bean
-    public WsdlDefinitionHandlerAdapter wsdlDefinitionHandlerAdapter(){
-        return new WsdlDefinitionHandlerAdapter();
-    }
-
-    @Bean
-    public SoapMessageDispatcher messageDispatcher(){
-        return new SoapMessageDispatcher();
-    }
-
-    @Bean
-    public SimpleUrlHandlerMapping simpleUrlHandlerMapping(){
-        SimpleUrlHandlerMapping handlerMapping = new SimpleUrlHandlerMapping();
-        handlerMapping.setDefaultHandler(messageDispatcher());
-        Properties properties = new Properties();
-        properties.put("*.wsdl", defaultWsdl11Definition(pokerSchema()));
-        handlerMapping.setMappings(properties);
-        return handlerMapping;
-    }
+//    @Bean
+//    public WebServiceMessageReceiverHandlerAdapter webServiceMessageReceiverHandlerAdapter(){
+//        return new WebServiceMessageReceiverHandlerAdapter();
+//    }
+//
+//    @Bean
+//    public WsdlDefinitionHandlerAdapter wsdlDefinitionHandlerAdapter(){
+//        return new WsdlDefinitionHandlerAdapter();
+//    }
+//
+//    @Bean
+//    public SoapMessageDispatcher messageDispatcher(){
+//        return new SoapMessageDispatcher();
+//    }
+//
+//    @Bean
+//    public SimpleUrlHandlerMapping simpleUrlHandlerMapping(){
+//        SimpleUrlHandlerMapping handlerMapping = new SimpleUrlHandlerMapping();
+//        handlerMapping.setDefaultHandler(messageDispatcher());
+//        Properties properties = new Properties();
+//        properties.put("*.wsdl", defaultWsdl11Definition(pokerSchema()));
+//        handlerMapping.setMappings(properties);
+//        return handlerMapping;
+//    }
 
 //    @Bean
 //    public SimpleWsdl11Definition myServiceDefinition(){
@@ -161,8 +163,8 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         return new SimpleXsdSchema(new ClassPathResource("PokerTypes.xsd"));
     }
 
-    @Bean
-    public SimpleControllerHandlerAdapter simpleControllerHandlerAdapter(){
-        return new SimpleControllerHandlerAdapter();
-    }
+//    @Bean
+//    public SimpleControllerHandlerAdapter simpleControllerHandlerAdapter(){
+//        return new SimpleControllerHandlerAdapter();
+//    }
 }

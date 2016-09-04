@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE mapping PUBLIC
+        "-//EXOLAB/Castor Object Mapping DTD Version 1.0//EN"
+        "http://castor.exolab.org/mapping.dtd">
+<!-- Отображает <EvaluateHandRequest> в EvaluateHandRequest -->
+
+<mapping xmlns="http://castor.exolab.org/">
+    <class name="com.springinaction.poker.webservice.EvaluateHandRequest">
+        <map-to xml="EvaluateHandRequest"/>
+
+        <!-- Отображает <hand> в массив объектов Card -->
+        <field name="hand" collection="array"
+               type="com.springinaction.poker.Card"
+               required="true">
+            <bind-xml name="card" node="element"/>
+        </field>
+    </class>
+
+    <!-- Отображает <card> в Card и <suit> в Suit-->
+    <class name="com.springinaction.poker.Card">
+        <map-to xml="card"/>
+
+        <field name="suit" type="com.springinaction.poker.Suit"
+               required="true">
+            <bind-xml name="suit" node="element"/>
+        </field>
+
+        <!-- Отображает <face> в Face -->
+        <field name="face" type="com.springinaction.poker.Face"
+               required="true">
+            <bind-xml name="face" node="element"/>
+        </field>
+    </class>
+
+    <!-- Отображает <EvaluateHandResponse> в EvaluateHandResponse -->
+    <class name="com.springinaction.poker.webservice.EvaluateHandResponse">
+
+        <map-to xml="EvaluateHandResponse"
+                ns-uri="http://www.springinaction.com/poker/schemas"
+                ns-prefix="tns"/>
+
+        <field name="pokerHand"
+               type="com.springinaction.poker.PokerHandType"
+               required="true">
+            <bind-xml name="tns:handName" node="element"
+                      QName-prefix="tns"
+                      xmlns:tns="http://www.khasang.ru/poker/schemas"/>
+        </field>
+    </class>
+</mapping>

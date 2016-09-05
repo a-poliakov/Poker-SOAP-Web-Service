@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.oxm.castor.CastorMarshaller;
 import org.springframework.ws.client.core.WebServiceTemplate;
 import org.springframework.ws.soap.saaj.SaajSoapMessageFactory;
 import org.springframework.ws.transport.http.HttpUrlConnectionMessageSender;
@@ -23,6 +25,8 @@ public class AppContext {
         WebServiceTemplate template = new WebServiceTemplate();
         template.setMessageFactory(saajSoapMessageFactory());
         template.setMessageSender(messageSender());
+        template.setMarshaller(marshaller());
+        template.setUnmarshaller(marshaller());
         return template;
     }
 
@@ -43,5 +47,12 @@ public class AppContext {
         TemplateBasedPokerClient client = new TemplateBasedPokerClient();
         client.setWebServiceTemplate(webServiceTemplate());
         return client;
+    }
+
+    @Bean
+    public CastorMarshaller marshaller(){
+        CastorMarshaller marshaller = new CastorMarshaller();
+        marshaller.setMappingLocation(new ClassPathResource("mapping.xml"));
+        return marshaller;
     }
 }

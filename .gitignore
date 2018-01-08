@@ -1,3 +1,5 @@
 Server/Server.iml
 Server/.idea/
 Server/src/main/resources/trang.jar
+Client/.idea/
+Client/Client.iml

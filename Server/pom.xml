@@ -13,7 +13,7 @@
         <spring.version>4.2.5.RELEASE</spring.version>
         <jdk.version>1.8</jdk.version>
         <junit.version>4.12</junit.version>
-        <spring.security.version>4.0.4.RELEASE</spring.security.version>
+        <spring.security.version>5.5.7</spring.security.version>
         <hibernate-version>5.0.1.Final</hibernate-version>
     </properties>
 
